@@ -1,4 +1,5 @@
 using EShop.DataLayer.Models;
+using EShop.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,11 @@ namespace EShop.PresentationLayer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EShopDBConnectionString")));
+
+            services.AddScoped<IProductRepository, SQLProductRepository>();
+            services.AddScoped<IOrderRepository, SQLOrderRepository>();
+
+
             services.AddControllersWithViews(); 
         }
 

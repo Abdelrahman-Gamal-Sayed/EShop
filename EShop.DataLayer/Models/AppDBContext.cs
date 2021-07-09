@@ -8,9 +8,7 @@ namespace EShop.DataLayer.Models
 {
     public partial class AppDBContext : DbContext
     {
-        public AppDBContext()
-        {
-        }
+     
 
         public AppDBContext(DbContextOptions<AppDBContext> options)
             : base(options)
@@ -26,9 +24,6 @@ namespace EShop.DataLayer.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-     
-
-
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Category>(entity =>
@@ -40,11 +35,11 @@ namespace EShop.DataLayer.Models
                 entity.Property(e => e.Name).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Category>().HasData(
-         new Category { Name = "TVs" },
-         new Category { Name = "Laptops" },
-         new Category { Name = "sound systems" }
-         );
+         //   modelBuilder.Entity<Category>().HasData(
+         //new Category { Name = "TVs" },
+         //new Category { Name = "Laptops" },
+         //new Category { Name = "sound systems" }
+         //);
 
             modelBuilder.Entity<Order>(entity =>
             {
@@ -95,7 +90,6 @@ namespace EShop.DataLayer.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
