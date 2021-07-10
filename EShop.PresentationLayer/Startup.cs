@@ -2,6 +2,7 @@ using EShop.DataLayer.Models;
 using EShop.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,8 @@ namespace EShop.PresentationLayer
         {
             services.AddDbContextPool<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EShopDBConnectionString")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDBContext>();
+
             services.AddScoped<IProductRepository, SQLProductRepository>();
             services.AddScoped<IOrderRepository, SQLOrderRepository>();
 
@@ -50,6 +53,7 @@ namespace EShop.PresentationLayer
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

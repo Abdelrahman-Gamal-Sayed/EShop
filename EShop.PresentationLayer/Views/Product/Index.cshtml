@@ -1,30 +1,29 @@
 ﻿@model IEnumerable<Product>
 
 
-        <table>
+<div class="card-deck">
 
-            <thead>
-                <tr>
-                    <th> ID </th>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Price </th>
-                </tr>
-            </thead>
 
-            <tbody>
-                @foreach (var product in Model)
-                {
+    @foreach (var product in Model)
+    {
 
-                    <tr>
-                        <th> @product.Id </th>
-                        <th> @product.Name </th>
-                        <th> @product.Description </th>
-                        <th> @product.Price </th>
-                      
-                    </tr>
 
-                }
+        <div class="card m-3">
+            <div class="card-header">
+                <h1>@product.Name</h1>
+            </div>
 
-            </tbody>
-        </table>
+            <div class="card-body text-center">
+                <img class="card-img-top" src="~/images/noimage.png" />
+                <h4>Price : @product.Price</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="product" asp-action="details" asp-route-id="@product.Id"  class="btn btn-primary">Order</a>
+
+            </div>
+        </div>
+
+    }
+
+
+</div>
