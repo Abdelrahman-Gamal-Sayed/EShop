@@ -64,7 +64,6 @@ namespace EShop.PresentationLayer.Controllers
                 string uniqueFileName = ProcessUplodedFile(model, product.Id);
                 return RedirectToAction("details", new { id = product.Id });
             }
-
             return View();
         }
         private string ProcessUplodedFile(ProductCreateViewModel model,int id)
